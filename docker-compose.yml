@@ -1,0 +1,46 @@
+services:
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./api-gateway/.env
+    depends_on:
+      - auth-service
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./auth-service/.env
+
+  # user-service:
+  #   build: ./user-service
+  #   env_file:
+  #     - ./user-service/.env
+
+  # contract-service:
+  #   build: ./contract-service
+  #   env_file:
+  #     - ./contract-service/.env
+
+  # job-service:
+  #   build: ./job-service
+  #   env_file:
+  #     - ./job-service/.env
+
+  # proposal-service:
+  #   build: ./proposal-service
+  #   env_file:
+  #     - ./proposal-service/.env
+
+  # payment-service:
+  #   build: ./payment-service
+  #   env_file:
+  #     - ./payment-service/.env
+
+  # notification-service:
+  #   build: ./notification-service
+  #   env_file:
+  #     - ./notification-service/.env

@@ -1,0 +1,17 @@
+import express, { Request, Response } from "express";
+import { connectDB } from "./config/connect-db";
+
+const app = express();
+const PORT = process.env.PORT || 4000;
+
+app.get("/api/auth/health", (req: Request, res: Response) => {
+  res.json({
+    success: true,
+    status: "Auth Service Healthy",
+  });
+});
+
+app.listen(PORT, () => {
+  connectDB();
+  console.log(`auth service listening on port ${PORT}`);
+});
