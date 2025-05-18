@@ -9,6 +9,8 @@ import authRoutes from "./routes/auth.route";
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+app.use(express.json());
+
 app.use("/api/auth", authRoutes);
 
 app.get("/api/auth/health", (req: Request, res: Response) => {
