@@ -15,10 +15,12 @@ services:
     env_file:
       - ./auth-service/.env
 
-  # user-service:
-  #   build: ./user-service
-  #   env_file:
-  #     - ./user-service/.env
+  user-service:
+    build: ./user-service
+    ports:
+      - "4001:4001"
+    env_file:
+      - ./user-service/.env
 
   # contract-service:
   #   build: ./contract-service

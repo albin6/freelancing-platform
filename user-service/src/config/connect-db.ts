@@ -8,7 +8,7 @@ export const connectDB = async () => {
   }
   try {
     await mongoose.connect(mongoURI);
-    console.log("auth-service connected to DB");
+    console.log("user-service connected to DB");
   } catch (error) {
     console.error(error);
   }
