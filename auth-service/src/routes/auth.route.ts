@@ -6,7 +6,7 @@ import {
   refreshToken,
   signup,
 } from "../controllers/auth.controller";
-import { requireAuth } from "../shared/auth";
+import { requireAuth } from "../middleware/auth";
 
 const router = Router();
 
