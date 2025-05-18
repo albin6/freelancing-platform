@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 import express, { Request, Response } from "express";
 
 dotenv.config();
@@ -10,10 +11,11 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 
-app.get("/api/auth/health", (req: Request, res: Response) => {
+app.get("/api/auth/health", (_req: Request, res: Response) => {
   res.json({
     success: true,
     status: "Auth Service Healthy",
