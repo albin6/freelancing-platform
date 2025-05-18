@@ -16,6 +16,15 @@ app.use(
   })
 );
 
+app.use(
+  "/api/profiles",
+  createProxyMiddleware({
+    target: process.env.PROFILE_BASE_URL,
+    changeOrigin: true,
+    pathRewrite: { "^/api/profiles": "" },
+  })
+);
+
 app.listen(PORT, () => {
   console.log(`api gateway listening on port ${PORT}`);
 });
