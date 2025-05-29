@@ -7,6 +7,9 @@ services:
       - ./api-gateway/.env
     depends_on:
       - auth-service
+      - user-service
+      - job-service
+      - proposal-service
 
   auth-service:
     build: ./auth-service
@@ -24,18 +27,22 @@ services:
 
   job-service:
     build: ./job-service
+    ports:
+      - "4002:4002"
     env_file:
       - ./job-service/.env
+
+  proposal-service:
+    build: ./proposal-service
+    ports:
+      - "4003:4003"
+    env_file:
+      - ./proposal-service/.env
 
   # contract-service:
   #   build: ./contract-service
   #   env_file:
   #     - ./contract-service/.env
-
-  # proposal-service:
-  #   build: ./proposal-service
-  #   env_file:
-  #     - ./proposal-service/.env
 
   # payment-service:
   #   build: ./payment-service
