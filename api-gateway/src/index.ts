@@ -34,6 +34,15 @@ app.use(
   })
 );
 
+app.use(
+  "/api/proposals",
+  createProxyMiddleware({
+    target: process.env.PROPOSAL_BASE_URL,
+    changeOrigin: true,
+    pathRewrite: { "^/api/jobs": "" },
+  })
+);
+
 app.listen(PORT, () => {
   console.log(`api gateway listening on port ${PORT}`);
 });
