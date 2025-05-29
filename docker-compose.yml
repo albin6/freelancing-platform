@@ -22,15 +22,15 @@ services:
     env_file:
       - ./user-service/.env
 
+  job-service:
+    build: ./job-service
+    env_file:
+      - ./job-service/.env
+
   # contract-service:
   #   build: ./contract-service
   #   env_file:
   #     - ./contract-service/.env
-
-  # job-service:
-  #   build: ./job-service
-  #   env_file:
-  #     - ./job-service/.env
 
   # proposal-service:
   #   build: ./proposal-service
