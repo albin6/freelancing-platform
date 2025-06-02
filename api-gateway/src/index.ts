@@ -39,7 +39,7 @@ app.use(
   createProxyMiddleware({
     target: process.env.PROPOSAL_BASE_URL,
     changeOrigin: true,
-    pathRewrite: { "^/api/jobs": "" },
+    pathRewrite: { "^/api/proposals": "" },
   })
 );
 
@@ -50,6 +50,28 @@ app.use(
     changeOrigin: true,
     pathRewrite: {
       "^/api/contracts": "",
+    },
+  })
+);
+
+app.use(
+  "/api/payments",
+  createProxyMiddleware({
+    target: process.env.PAYMENT_BASE_URL,
+    changeOrigin: true,
+    pathRewrite: {
+      "^/api/payments": "",
+    },
+  })
+);
+
+app.use(
+  "/api/payments",
+  createProxyMiddleware({
+    target: process.env.NOTIFICATION_BASE_URL,
+    changeOrigin: true,
+    pathRewrite: {
+      "^/api/notifications": "",
     },
   })
 );
