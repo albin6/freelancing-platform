@@ -43,6 +43,17 @@ app.use(
   })
 );
 
+app.use(
+  "/api/contracts",
+  createProxyMiddleware({
+    target: process.env.CONTRACT_BASE_URL,
+    changeOrigin: true,
+    pathRewrite: {
+      "^/api/contracts": "",
+    },
+  })
+);
+
 app.listen(PORT, () => {
   console.log(`api gateway listening on port ${PORT}`);
 });
