@@ -10,6 +10,7 @@ services:
       - user-service
       - job-service
       - proposal-service
+      - contract-service
 
   auth-service:
     build: ./auth-service
@@ -39,10 +40,12 @@ services:
     env_file:
       - ./proposal-service/.env
 
-  # contract-service:
-  #   build: ./contract-service
-  #   env_file:
-  #     - ./contract-service/.env
+  contract-service:
+    build: ./contract-service
+    ports:
+      - "4004:4004"
+    env_file:
+      - ./contract-service/.env
 
   # payment-service:
   #   build: ./payment-service
