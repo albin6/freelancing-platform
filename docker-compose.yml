@@ -12,6 +12,7 @@ services:
       - proposal-service
       - contract-service
       - payment-service
+      - notification-service
 
   auth-service:
     build: ./auth-service
@@ -55,7 +56,9 @@ services:
     env_file:
       - ./payment-service/.env
 
-  # notification-service:
-  #   build: ./notification-service
-  #   env_file:
-  #     - ./notification-service/.env
+  notification-service:
+    build: ./notification-service
+    ports:
+      - "4006:4006"
+    env_file:
+      - ./notification-service/.env
