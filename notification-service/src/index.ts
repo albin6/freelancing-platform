@@ -7,6 +7,8 @@ dotenv.config();
 
 import notificationRoutes from "./routes/notification.route";
 import { connectDB } from "./config/connect-db";
+import { connectRabbitMQ } from "./utils/rabbitmq";
+import { consumeProposalCreated } from "./events/proposal-created.consumer";
 
 const app = express();
 const PORT = process.env.PORT || 4006;
@@ -16,7 +18,15 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/api/notifications", notificationRoutes);
 
-app.listen(PORT, () => {
-  connectDB();
-  console.log(`auth service listening on port ${PORT}`);
-});
+connectRabbitMQ()
+  .then((channel) => {
+    consumeProposalCreated(channel);
+    app.listen(PORT, () => {
+      connectDB();
+      console.log(`notification service listening on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Could not start service:", err);
+    process.exit(1);
+  });

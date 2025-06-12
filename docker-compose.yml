@@ -56,7 +56,20 @@ services:
     env_file:
       - ./payment-service/.env
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
   notification-service:
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
     build: ./notification-service
     ports:
       - "4006:4006"
